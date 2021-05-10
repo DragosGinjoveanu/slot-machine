@@ -2,10 +2,15 @@ var bank = 0;
 // this function adds money to the bank
 function addMoneyToBank() {
   var money = parseInt(document.getElementById("budget").value);
-  bank += money;
-  document.getElementById("bank").innerHTML = "Bank: $" + bank;
-  document.getElementById("status").style.color = "green";
-  document.getElementById("status").innerHTML = "You added $" + money +" to your bank.";
+  if (Number.isNaN(money) || money == 0) {
+    document.getElementById("status").style.color = "red";
+    document.getElementById("status").innerHTML = "Minimum deposit is $1.";
+  } else {
+    bank += money;
+    document.getElementById("bank").innerHTML = "Bank: $" + bank;
+    document.getElementById("status").style.color = "green";
+    document.getElementById("status").innerHTML = "You added $" + money +" to your bank.";
+  }
   return false;
 } 
 // this function generates a random character
