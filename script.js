@@ -1,7 +1,7 @@
-var bank = 0;
+var bank = 0, money;
 
 function addMoneyToBank() {
-  var money = parseInt(document.getElementById("budget").value);
+  money = parseInt(document.getElementById("budget").value);
   if (Number.isNaN(money) || money == 0) {
     changeStatus("red", "Minimum deposit is $1.");
   } else {
@@ -41,16 +41,21 @@ function playGame() {
         }
         document.getElementById("slotMachine").innerHTML = "";
         document.getElementById("slotMachine").innerHTML = randomCharacter[1] + " " + randomCharacter[2] + " " + randomCharacter[3];
-        checkGameStatus(randomCharacter, bet);
+        if (checkGameStatus(randomCharacter, bet)) {
+          changeStatus("green", "You won $" + money + "!");
+          document.getElementById("bank").innerHTML = "Bank: $" + bank;
+        } else {
+          changeStatus("red", "You lost!");
+        }
       }
   }
   return false;
 }
 
-//tells you if you won/lost and updates the bank
+//checks if you won/lost
 function checkGameStatus(slots, bet) {
   if (slots[1] == slots[2] && slots[2] == slots[3]) {
-      var money;
+      money;
       if (slots[1] == '7') {
         money = bet * 5;
       } else if (slots[1] == '*') {
@@ -59,11 +64,9 @@ function checkGameStatus(slots, bet) {
         money = bet * 2;
       }
       bank += money;
-      changeStatus("green", "You won $" + money + "!");
-      document.getElementById("bank").innerHTML = "Bank: $" + bank;
-  } else {
-      changeStatus("red", "You lost!");
+      return true;
   }
+  return false;
 }
 
 function restart() {
