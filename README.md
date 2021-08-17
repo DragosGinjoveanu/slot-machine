@@ -1,2 +1,5 @@
 # slot-machine
-This program imitates a slot machine. You can add money to your bank and bid the amount of money you want. The game rules are in the program. ;D
+
+This app is a simplified version of a slot machine.    
+The user can add money to his bank, bet a specific amount of money and try his luck until he runs out of money.    
+There are different winnings.   
