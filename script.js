@@ -18,7 +18,7 @@ function changeStatus(color, text) {
 }
 
 function getRandomSymbol() {
-  var slots = "7/*";
+  const slots = "7/*";
   return slots[Math.floor(Math.random() * slots.length)];
 }
 
@@ -27,7 +27,7 @@ function playGame() {
   if (bank == 0) {
       changeStatus("red", "You ran out of money!");
   } else {
-      var bet = parseInt(document.getElementById("bet").value);
+      const bet = parseInt(document.getElementById("bet").value);
       if (bet > bank) {
         changeStatus("red", "You don't have enough money!");
       } else if (bet <= 0 || Number.isNaN(bet)) {
@@ -35,8 +35,8 @@ function playGame() {
       } else {
         bank -= bet;
         document.getElementById("bank").innerHTML = "Bank: $" + bank;
-        var randomCharacter = [];
-        for (var i = 1; i <= 3; i++) {
+        let randomCharacter = [];
+        for (let i = 1; i <= 3; i++) {
           randomCharacter[i] = getRandomSymbol();
         }
         document.getElementById("slotMachine").innerHTML = "";
